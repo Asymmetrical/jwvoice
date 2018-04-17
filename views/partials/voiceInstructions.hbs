@@ -1,0 +1,46 @@
+<script>
+  if (annyang) {
+    
+
+  var commands = {
+     'go (to) *tag': navigateTo,
+     'show (me) *tag': navigateTo,
+     'navigate (to) *tag': navigateTo,
+     'take me to *tag': navigateTo,
+     'back': navigateBack,
+     'forward': navigateForward,
+     'scroll down *tag': scrollDown,
+     'scroll up': scrollUp,
+     'menu': showingMenu,
+     'hello': sayHello,
+     'cool': confirmCool
+   } 
+
+   /* var commands = {
+     '*tag': processContent
+   }  */
+   
+   // leassons learned
+   // using a direct word *tag means we need to parse the word/command better than now
+
+   // Add our commands to annyang
+   annyang.addCommands(commands);
+ 
+   // Start listening. You can call this here, or attach this call to an event, button, etc.
+  // var startAnnyang = () => {
+    annyang.start({ autoRestart: true });
+    console.log("annyang starting");
+  // };
+  
+
+  // start listening with timer
+  /* setTimeout (() => {
+    annyang.s
+    //registering a callback function
+    startAnnyang();
+}, 10000); */
+
+   // need to be able to stop this after a while
+   
+ }
+ </script>

@@ -2,21 +2,14 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
-const port = process.env.PORT || 3000;
+const listen = require('./listen/listen');
 
-//const comm = require('./views/commands');
-// an idea would be to precalculate the commands before sending them as 
-// parameters to the page when showing it.
-// command.js should not need to be in public folder...
+const port = process.env.PORT || 3000;
 
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
-
-// add some middleware
-// setting up a static server - super simple!!! 
-// Go from here to make simple sites
 
 //middleware!!
 // we call next to tell express that we are done
@@ -101,7 +94,6 @@ app.get('/search', (req, res) => {
 //     }
 // });
 
-
 app.get('/bad', (req, res) => {
     res.send({
         errorMessage: 404
@@ -111,3 +103,7 @@ app.get('/bad', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is up and running at port ${port}`);
 });
+
+/////////////////////////  Google SPEECH  /////////////////////////
+
+listen.startListening();

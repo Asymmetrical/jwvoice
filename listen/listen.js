@@ -1,3 +1,4 @@
+// -------------------- Speech top stuff --------------- //
 const record = require('node-record-lpcm16');
 
 // Imports the Google Cloud client library
@@ -27,6 +28,8 @@ const request = {
   interimResults: false, // If you want interim results, set this to true
 };
 
+// ----------------------- speech top stuff end ------------------------ //
+
 // Create a recognize stream
 const recognizeStream = client
   .streamingRecognize(request)
@@ -40,7 +43,8 @@ const recognizeStream = client
   );
 
 // Start recording and send the microphone input to the Speech API
-record
+var startListening = () => {
+    record
   .start({
     sampleRateHertz: sampleRateHertz,
     threshold: 0,
@@ -53,3 +57,8 @@ record
   .pipe(recognizeStream);
 
 console.log('Listening, press Ctrl+C to stop.');
+};
+
+// Export function
+
+module.exports.startListening = startListening;

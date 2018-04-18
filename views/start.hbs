@@ -11,29 +11,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-<script>
-function johanFunction() {
-    {{stopListening}}
-	document.getElementById("demo").innerHTML = "Hello World";
-}
-</script>
 
-<script type="text/javascript">
-
-            function identifyEscKeyPressedEvent(keyEvent)
-            {               
-				alert("running");
-                var pressedKeyValue = keyEvent.keyCode;
-                if(pressedKeyValue == 27)
-                {
-                    alert("Esc Key is pressed");
-                }
-                else
-                {
-                    alert("You have other Key is pressed");
-                }
-            }
-        </script>
+<!-- {{>escPressed}} -->
 		
 	</head>
 	<body>
@@ -106,8 +85,13 @@ function johanFunction() {
 				</article>
 			</section>
 
-<button onclick="johanFunction()">Click me</button>
-<p id="demo"></p>
+<form method="post" action="/stoplisten">
+  <input type="submit" value="Listen OFF">
+</form>
+<form method="post" action="/startlisten">
+  <input type="submit" value="Listen ON">
+</form>
+
 		<!-- One -->
 			<section id="one" class="wrapper style2">
 				<div class="inner">
@@ -233,5 +217,6 @@ function johanFunction() {
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 {{>voiceInstructions}}
+
 	</body>
 </html>

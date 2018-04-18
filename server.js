@@ -46,9 +46,19 @@ hbs.registerHelper('startListening', () => {
     listen.startListening();
 });
 hbs.registerHelper('stopListening', () => {
-    console.log('helper reacted');
+    console.log('stopListening helper reacted++++++++++');
     listen.stopListening();
 });
+hbs.registerHelper('stopListen', (boolVal) => {
+    console.log('stopListen helper reacted ?????????');
+    if (boolVal) {
+        console.log('TRUE');
+    } else {
+        console.log('FALSE');
+    }
+    //listen.stopListening();
+});
+
 
 
 
@@ -92,6 +102,14 @@ app.get('/overview', (req, res) => {
 app.get('/search', (req, res) => {
     res.render('search.hbs');
     latestPageHistory.push('search');
+});
+app.post('/stoplisten', (req, res) => {
+    listen.stopListening();
+    console.log('stopListen route reacted !!!!!!');
+});
+app.post('/startlisten', (req, res) => {
+    listen.startListening();
+    console.log('startListening route reacted !!!!!!');
 });
 // app.get('/back', (req, res) => {
 //     if (latestPageHistory.length > 3){

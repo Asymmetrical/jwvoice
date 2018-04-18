@@ -33,7 +33,7 @@ const request = {
 };
 
 // ----------------------- speech top stuff end ------------------------ //
-
+var startListening = () => {
 // Create a recognize stream
 const recognizeStream = client
     .streamingRecognize(request)
@@ -47,27 +47,28 @@ const recognizeStream = client
     );
 
 // Start recording and send the microphone input to the Speech API
-var startListening = () => {
+
+    
     record
         .start({
             sampleRateHertz: sampleRateHertz,
             threshold: 0,
             // Other options, see https://www.npmjs.com/package/node-record-lpcm16#options
-            verbose: false,
-            recordProgram: 'rec', // Try also "arecord" or "sox"
-            silence: '10.0',
+            verbose: true,
+            recordProgram: 'rec', // Try also "arecord" or "sox" OR default is 'rec'
+            silence: '3.0',
         })
         .on('error', console.error)
         .pipe(recognizeStream);
 
     console.log('Listening, press Ctrl+C to stop.');
-    record.stop();
-    console.log('Listening is stopping.');
+   // record.stop();
+   // console.log('Listening is stopping.');
 };
 
 var stopListening = () => {
     //if (recognizeStream.model){
-    //record.stop();
+    record.stop();
     console.log('Listening is stopping by click.');
    // }
     

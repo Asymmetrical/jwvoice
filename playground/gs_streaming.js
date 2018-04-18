@@ -4,6 +4,13 @@ const record = require('node-record-lpcm16');
 const speech = require('@google-cloud/speech');
 
 // Creates a client
+// Instantiates a client. Explicitly use service account credentials by
+// specifying the private key file. All clients in google-cloud-node have this
+// helper, see https://github.com/GoogleCloudPlatform/google-cloud-node/blob/master/docs/authentication.md
+/*const client = new speech.SpeechClient({
+  keyFilename: '~/node/voicenav_gs/speaknav-0c30d243b5f8.json'
+});
+*/
 const client = new speech.SpeechClient();
 
 /**

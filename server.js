@@ -18,7 +18,7 @@ var latestPageHistory = [];
 app.use((req, res, next) => {
     var now = new Date().toString();
     var log = `${now}: ${req.method} ${req.url}`;
-    console.log(log);
+   // console.log(log);
     fs.appendFile('Server.log', log + '\n', (err) => {
         if(err) {
             console.log('Unable to append to server log');
@@ -42,6 +42,14 @@ hbs.registerHelper('getCurrentYear', () => {
 hbs.registerHelper('screamIt', (text) => {
     return text.toUpperCase();
 });
+hbs.registerHelper('startListening', () => {
+    listen.startListening();
+});
+hbs.registerHelper('stopListening', () => {
+    console.log('helper reacted');
+    listen.stopListening();
+});
+
 
 
 
@@ -106,4 +114,4 @@ app.listen(port, () => {
 
 /////////////////////////  Google SPEECH  /////////////////////////
 
-listen.startListening();
+//listen.startListening();

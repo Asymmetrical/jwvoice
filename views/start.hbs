@@ -7,10 +7,34 @@
 <html>
 	<head>
 		<title>VoiceNav - navigate by voice</title>
-    {{>annyang}}
+   
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+<script>
+function johanFunction() {
+    {{stopListening}}
+	document.getElementById("demo").innerHTML = "Hello World";
+}
+</script>
+
+<script type="text/javascript">
+
+            function identifyEscKeyPressedEvent(keyEvent)
+            {               
+				alert("running");
+                var pressedKeyValue = keyEvent.keyCode;
+                if(pressedKeyValue == 27)
+                {
+                    alert("Esc Key is pressed");
+                }
+                else
+                {
+                    alert("You have other Key is pressed");
+                }
+            }
+        </script>
+		
 	</head>
 	<body>
 
@@ -26,6 +50,7 @@
 					<li><a href="index.html">Home</a></li>
 					<li><a href="generic.html">Generic</a></li>
 					<li><a href="elements.html">Elements</a></li>
+
 				</ul>
 			</nav>
 
@@ -81,6 +106,8 @@
 				</article>
 			</section>
 
+<button onclick="johanFunction()">Click me</button>
+<p id="demo"></p>
 		<!-- One -->
 			<section id="one" class="wrapper style2">
 				<div class="inner">

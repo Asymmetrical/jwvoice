@@ -123,7 +123,15 @@ app.post('/startlisten', (req, res) => {
 app.post('/listenonoff', (req, res) => {
     //listen.startListening();
     console.log('listenonoff route reacted !!!!!!');
-    console.log('req.body.text = ' + req.body.text); // WORKS 
+    console.log('setonoff = ' + req.body.text); // WORKS 
+    var setonoff = req.body.text;
+    if (setonoff === 'true') {
+        console.log('starting to listen');
+        listen.startListening();
+    } else if (setonoff === 'false') {
+        console.log('stopping to listen');
+        listen.stopListening();
+    }
     //console.log('req.body = ' + typeof(req.body.text));
 });
 // app.get('/back', (req, res) => {

@@ -18,11 +18,10 @@
             }));
         });
         */
-       
-        k.down.on("escape", function() {
-            console.log("escape is DOWN");
-            //post('/startlisten');
-            if (listen){
+    var sendRequest = (listenState) => {
+        if (listenState === false){
+            // if listen is off - then turn it on
+            
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", '/listenonoff', true);
                 xhr.setRequestHeader('Content-Type', 'application/json');
@@ -30,7 +29,13 @@
                 xhr.send(JSON.stringify({
                     text: 'false'
                 }));
+                
+                //console.log('listenState = ' + listenState);
             } else {
+                // if listen is on - then turn it off
+                state = false;
+                //console.log('listenState = ' + listenState);
+                
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", '/listenonoff', true);
                 xhr.setRequestHeader('Content-Type', 'application/json');
@@ -38,12 +43,21 @@
                 xhr.send(JSON.stringify({
                     text: 'true'
                 }));
+                
             }
-             
-        })
+    };
+        k.down.on("escape", function() {
+            console.log("escape is DOWN");
+    //lighBool=!lightBool;
+        listen = !listen;
+        sendRequest(listen);
+        });
+
         k.up.on("escape", function() {
             console.log("escape is UP");
-        })
+        });
+
+
 
 
         /*k.down.on("any_key", function(key) {

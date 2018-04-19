@@ -1,7 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
-
+const bodyParser = require('body-parser');
 const listen = require('./listen/listen');
 
 const port = process.env.PORT || 3000;
@@ -14,6 +14,8 @@ const port = process.env.PORT || 3000;
 /////////////////////////////////////////////
 
 var app = express();
+
+app.use(bodyParser.json());
 
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
@@ -117,6 +119,12 @@ app.post('/stoplisten', (req, res) => {
 app.post('/startlisten', (req, res) => {
     listen.startListening();
     console.log('startListening route reacted !!!!!!');
+});
+app.post('/listenonoff', (req, res) => {
+    //listen.startListening();
+    console.log('listenonoff route reacted !!!!!!');
+    console.log('req.body.text = ' + req.body.text); // WORKS 
+    //console.log('req.body = ' + typeof(req.body.text));
 });
 // app.get('/back', (req, res) => {
 //     if (latestPageHistory.length > 3){

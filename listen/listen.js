@@ -54,7 +54,7 @@ const recognizeStream = client
             sampleRateHertz: sampleRateHertz,
             threshold: 0,
             // Other options, see https://www.npmjs.com/package/node-record-lpcm16#options
-            verbose: true,
+            verbose: false,
             recordProgram: 'rec', // Try also "arecord" or "sox" OR default is 'rec'
             silence: '3.0',
         })

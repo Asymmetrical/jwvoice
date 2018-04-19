@@ -4,6 +4,8 @@ const record = require('node-record-lpcm16');
 // Imports the Google Cloud client library
 const speech = require('@google-cloud/speech');
 
+const dialog = require('./../dialog');
+
 // Creates a client
 // Instantiates a client. Explicitly use service account credentials by
 // specifying the private key file. Not sure if speech has this...
@@ -32,8 +34,10 @@ const request = {
     interimResults: false, // If you want interim results, set this to true
 };
 
-// ----------------------- speech top stuff end ------------------------ //
+// ----------------------- speech top stuff END ------------------------ //
+
 var startListening = () => {
+    var iheardthis = '';
 // Create a recognize stream
 const recognizeStream = client
     .streamingRecognize(request)
@@ -42,13 +46,12 @@ const recognizeStream = client
         process.stdout.write(
             data.results[0] && data.results[0].alternatives[0]
                 ? `Transcription: ${data.results[0].alternatives[0].transcript}\n`
+                //? dialog.whatisthis(data.results[0].alternatives[0].transcript)
                 : `\n\nReached transcription time limit, press Ctrl+C\n`
         )
     );
 
 // Start recording and send the microphone input to the Speech API
-
-    
     record
         .start({
             sampleRateHertz: sampleRateHertz,
@@ -74,7 +77,10 @@ var stopListening = () => {
     
 };
 
-// Export function
+// TEST
+//dialog.whatisthis('show connect');
+////////////////////////////////////////////////////////
+// Export functions
 
 module.exports.startListening = startListening;
 module.exports.stopListening = stopListening;

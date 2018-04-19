@@ -112,14 +112,7 @@ app.get('/search', (req, res) => {
     res.render('search.hbs');
     latestPageHistory.push('search');
 });
-app.post('/stoplisten', (req, res) => {
-    listen.stopListening();
-    console.log('stopListen route reacted !!!!!!');
-});
-app.post('/startlisten', (req, res) => {
-    listen.startListening();
-    console.log('startListening route reacted !!!!!!');
-});
+
 app.post('/listenonoff', (req, res) => {
     //listen.startListening();
     console.log('listenonoff route reacted !!!!!!');

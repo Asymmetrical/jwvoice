@@ -115,14 +115,14 @@ app.get('/search', (req, res) => {
 
 app.post('/listenonoff', (req, res) => {
     //listen.startListening();
-    console.log('listenonoff route reacted !!!!!!');
-    console.log('setonoff = ' + req.body.text); // WORKS 
+    //console.log('listenonoff route reacted !!!!!!');
+    //console.log('setonoff = ' + req.body.text); // WORKS 
     var setonoff = req.body.text;
     if (setonoff === 'true') {
-        console.log('starting to listen');
+        console.log('SERVER: starting to listen');
         listen.startListening();
     } else if (setonoff === 'false') {
-        console.log('stopping to listen');
+        console.log('SERVER: stopping to listen');
         listen.stopListening();
     }
     //console.log('req.body = ' + typeof(req.body.text));

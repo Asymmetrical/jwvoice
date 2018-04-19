@@ -22,6 +22,7 @@ const sampleRateHertz = 16000;
 const languageCode = 'en-US';
 const recogModel = 'command_and_search';
 
+var iheardthis = 'I am sorry, I did not hear that.';
 // https://cloud.google.com/speech-to-text/docs/reference/rest/v1p1beta1/RecognitionConfig
 
 const request = {
@@ -37,18 +38,37 @@ const request = {
 // ----------------------- speech top stuff END ------------------------ //
 
 var startListening = () => {
-    var iheardthis = '';
+    
 // Create a recognize stream
-const recognizeStream = client
+// const recognizeStream = client
+//     .streamingRecognize(request)
+//     .on('error', console.error)
+//     .on('data', data => 
+//         process.stdout.write(
+//             data.results[0] && data.results[0].alternatives[0]
+//                 ? `Transcription: ${data.results[0].alternatives[0].transcript}\n`
+//                 //? dialog.whatisthis(data.results[0].alternatives[0].transcript)
+//               //  ? iheardthis = data.results[0].alternatives[0].transcript
+//                 : `\n\nReached transcription time limit, press Ctrl+C\n`
+//         )
+//         //console.log(data.results[0].alternatives[0].transcript)
+//     );
+
+    const recognizeStream = client
     .streamingRecognize(request)
     .on('error', console.error)
-    .on('data', data =>
-        process.stdout.write(
-            data.results[0] && data.results[0].alternatives[0]
-                ? `Transcription: ${data.results[0].alternatives[0].transcript}\n`
-                //? dialog.whatisthis(data.results[0].alternatives[0].transcript)
-                : `\n\nReached transcription time limit, press Ctrl+C\n`
-        )
+    .on('data', data => 
+    {
+        if (data.results[0] && data.results[0].alternatives[0]) {
+            iheardthis = data.results[0].alternatives[0].transcript;
+            console.log('LISTEN: DATA FOUND: iheardthis = ' + iheardthis);
+            dialog.whatisthis(iheardthis);
+        } else {
+            console.log('LISTEN: NOOOOO data: iheardthis = ' + iheardthis);
+        }
+        //console.log(data.results[0].alternatives[0].transcript)
+    }
+        //
     );
 
 // Start recording and send the microphone input to the Speech API
@@ -64,7 +84,7 @@ const recognizeStream = client
         .on('error', console.error)
         .pipe(recognizeStream);
 
-    console.log('Listening, press Ctrl+C to stop.');
+    console.log('LISTEN: Listening, press Ctrl+C to stop.');
    // record.stop();
    // console.log('Listening is stopping.');
 };
@@ -72,13 +92,15 @@ const recognizeStream = client
 var stopListening = () => {
     //if (recognizeStream.model){
     record.stop();
-    console.log('Listening is stopping by click.');
+    console.log('LISTEN: Listening is stopping by click.');
    // }
     
 };
 
 // TEST
 //dialog.whatisthis('show connect');
+//console.log('iheardthis = ' + iheardthis);
+//dialog.whatisthis(iheardthis);
 ////////////////////////////////////////////////////////
 // Export functions
 

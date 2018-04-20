@@ -50,6 +50,11 @@
             console.log("escape is DOWN");
         listen = !listen;
         sendRequest(listen);
+        if (listen) {
+            document.getElementById("listeningBar").style.display = "block";
+        } else {
+            document.getElementById("listeningBar").style.display = "none";
+        }
         });
 
 /*

@@ -16,11 +16,13 @@
 		
 	</head>
 	<body>
+		<!-- Header -->
+			{{>iamlisteningbar}}
 
 		<!-- Header -->
 			<header id="header" class="alt">
-				<div class="logo"><a href="index.html">VoiceNav <span>by JohanW</span></a></div>
-				<a href="#menu">Say: "Menu"</a>
+				<div class="logo"><a href="index.html">VoiceNav <span>by Google Speech + DialogFlow - press esc to start and stop listening</span></a></div>
+				<a href="#menu">"Menu"</a>
 			</header>
 
 		<!-- Nav -->
@@ -85,12 +87,53 @@
 				</article>
 			</section>
 
-<form method="post" action="/stoplisten">
-  <input type="submit" value="Listen OFF">
-</form>
-<form method="post" action="/startlisten">
+		<!-- help buttons -->
+		<!--
+			<section id="one" class="wrapper style2">
+				<div class="inner">
+					<div class="grid-style">
+
+						<div>
+							<div class="box">
+								
+								<div class="content">
+									<header class="align-center">
+										<p>VoiceNav</p>
+										<h2>No keyboard? Press to START listening</h2>
+									
+									</header>
+									
+									<footer class="align-center">
+										<form method="post" action="/startlisten">
   <input type="submit" value="Listen ON">
 </form>
+									</footer>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<div class="box">
+								
+								<div class="content">
+									<header class="align-center">
+										<p>VoiceNav</p>
+										<h2>No keyboard? Press to STOP listening</h2>
+									</header>
+									
+									<footer class="align-center">
+										<form method="post" action="/stoplisten">
+  <input type="submit" value="Listen OFF">
+</form>
+									</footer>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+			-->
 
 		<!-- One -->
 			<section id="one" class="wrapper style2">
